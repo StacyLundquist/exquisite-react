@@ -33,6 +33,7 @@ const PlayerSubmissionForm = (props) => {
           type="text"
           value={field.userInput}
           onChange={(event) => {onFormFieldChange(i,event)}}
+          className={field.userInput ? '' : 'PlayerSubmissionForm__input--invalid' } 
           />
         )} else {
         return (field)
