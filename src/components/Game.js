@@ -7,7 +7,12 @@ import RecentSubmission from './RecentSubmission';
 const Game = () => {
   const [lines, setLines] = useState([]);
   const [playerNumber, setPlayerNumber] = useState(1);
-  
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const onRevealPoem = () => {
+    setIsSubmitted(true)
+  };
+
 
   const newPhrase = (phrase) => {
     const phrases = [
@@ -47,11 +52,11 @@ const Game = () => {
         { stringFormat }
       </p>
 
-      <RecentSubmission  /> 
+      <RecentSubmission  submission={lines.length-1} isSubmitted={isSubmitted}/> 
 
-      <PlayerSubmissionForm index={playerNumber} fields={FIELDS} sendSubmission={newPhrase}/>
+      <PlayerSubmissionForm index={playerNumber} fields={FIELDS} sendSubmission={newPhrase} isSubmitted={isSubmitted}/>
 
-      <FinalPoem  />
+      <FinalPoem isSubmitted={isSubmitted} revealPoem={onRevealPoem}/>
 
     </div>
   );
