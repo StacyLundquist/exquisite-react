@@ -56,7 +56,7 @@ const Game = () => {
 
       <PlayerSubmissionForm index={playerNumber} fields={FIELDS} sendSubmission={newPhrase} isSubmitted={isSubmitted}/>
 
-      <FinalPoem isSubmitted={isSubmitted} revealPoem={onRevealPoem}/>
+      <FinalPoem submissions={lines} isSubmitted={isSubmitted} revealPoem={onRevealPoem}/>
 
     </div>
   );
