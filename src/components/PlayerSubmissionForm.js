@@ -8,9 +8,9 @@ const PlayerSubmissionForm = (props) => {
   const [formFields, setFormFields] = useState(props.fields)
   
   const onFormFieldChange = (i, event) => {
-    const newFormFields = {
+    const newFormFields = [
       ...formFields
-    };
+    ];
     newFormFields[i] = {
       ...newFormFields[i],
       userInput: event.target.value
