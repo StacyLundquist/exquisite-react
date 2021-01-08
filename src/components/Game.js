@@ -9,11 +9,6 @@ const Game = () => {
   const [playerNumber, setPlayerNumber] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const onRevealPoem = () => {
-    setIsSubmitted(true)
-  };
-
-
   const newPhrase = (phrase) => {
     const phrases = [
       ...lines,
@@ -29,16 +24,21 @@ const Game = () => {
     let newPlayer = playerNumber + 1;
     setPlayerNumber(newPlayer);
   }
-
- 
   
   const stringFormat = (fields) => FIELDS.map((field) => {
-    if (field.key) {
-      return (field.userInput ?  field.userInput : field.placeholder);
+    if (field.key && field.userInput) {
+      return field.userInput;
+    } else if (field.key) {
+      return field.placeholder;
     } else {
       return field;
     }
   }).join(' ');
+  
+  const onRevealPoem = () => {
+    setIsSubmitted(true)
+  };
+
 
   return (
     <div className="Game">
@@ -68,27 +68,33 @@ const FIELDS = [
   {
     key: 'adj1',
     placeholder: 'adjective',
+    userInput: '',
   },
   {
     key: 'noun1',
     placeholder: 'noun',
+    userInput: '',
   },
   {
     key: 'adv',
     placeholder: 'adverb',
+    userInput: '',
   },
   {
     key: 'verb',
     placeholder: 'verb',
+    userInput: '',
   },
   'the',
   {
     key: 'adj2',
     placeholder: 'adjective',
+    userInput: '',
   },
   {
     key: 'noun2',
     placeholder: 'noun',
+    userInput: '',
   },
   '.',
 ];

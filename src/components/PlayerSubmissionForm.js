@@ -21,7 +21,7 @@ const PlayerSubmissionForm = (props) => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     props.sendSubmission(formFields);
-    setFormFields(props.fields)
+    setFormFields(props.fields);
   }
   const poemInputs = formFields.map((field, i) => {
       if (field.key) {
