@@ -1,9 +1,25 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import './PlayerSubmissionForm.css';
 
-const PlayerSubmissionForm = () => {
+
+const PlayerSubmissionForm = (props) => {
+  
+  const [formFields, setFormFields] = useState(props.fields)
+  const poemInputs = formFields.map((field, i) => {
+      if (field.key) {
+        return (
+          <input 
+          key={field.key}
+          name={field.key}
+          placeholder={field.placeholder}
+          type="text" 
+          />
+        )} else {
+        return field
+      }
+  });
+  
   return (
     <div className="PlayerSubmissionForm">
       <h3>Player Submission Form for Player #{  }</h3>
@@ -11,14 +27,7 @@ const PlayerSubmissionForm = () => {
       <form className="PlayerSubmissionForm__form" >
 
         <div className="PlayerSubmissionForm__poem-inputs">
-
-          {
-            // Put your form inputs here... We've put in one below as an example
-          }
-          <input
-            placeholder="hm..."
-            type="text" />
-
+          {poemInputs}
         </div>
 
         <div className="PlayerSubmissionForm__submit">
