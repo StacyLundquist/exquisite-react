@@ -5,9 +5,31 @@ import FinalPoem from './FinalPoem';
 import RecentSubmission from './RecentSubmission';
 
 const Game = () => {
-  const exampleFormat = FIELDS.map((field) => {
+  const [lines, setLines] = useState([]);
+  const [playerNumber, setPlayerNumber] = useState(1);
+  
+
+  const newPhrase = (phrase) => {
+    const phrases = [
+      ...lines,
+    ];
+    const newPhrase = [
+      ...phrase,
+    ];
+
+    const newString = stringFormat(newPhrase);
+    phrases.push(newString);
+    setLines(phrases)
+
+    let newPlayer = playerNumber + 1;
+    setPlayerNumber(newPlayer);
+  }
+
+ 
+  
+  const stringFormat = FIELDS.map((field) => {
     if (field.key) {
-      return field.placeholder;
+      return (field.userInput ?  field.userInput : field.placeholder);
     } else {
       return field;
     }
@@ -22,14 +44,14 @@ const Game = () => {
       <p>Please follow the following format for your poetry submission:</p>
 
       <p className="Game__format-example">
-        { exampleFormat }
+        { stringFormat }
       </p>
 
-      <RecentSubmission />
+      <RecentSubmission  /> 
 
-      <PlayerSubmissionForm fields={FIELDS}/>
+      <PlayerSubmissionForm index={playerNumber} fields={FIELDS} sendSubmission={newPhrase}/>
 
-      <FinalPoem />
+      <FinalPoem  />
 
     </div>
   );
