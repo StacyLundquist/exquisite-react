@@ -52,7 +52,7 @@ const Game = () => {
         { stringFormat }
       </p>
 
-      <RecentSubmission  submission={lines.length-1} isSubmitted={isSubmitted}/> 
+      <RecentSubmission  submission={lines[lines.length-1]} isSubmitted={isSubmitted}/> 
 
       <PlayerSubmissionForm index={playerNumber} fields={FIELDS} sendSubmission={newPhrase} isSubmitted={isSubmitted}/>
 

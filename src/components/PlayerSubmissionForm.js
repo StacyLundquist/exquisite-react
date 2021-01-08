@@ -39,11 +39,11 @@ const PlayerSubmissionForm = (props) => {
       }
   });
   
-  return (
-    <div className="PlayerSubmissionForm">
-      <h3>Player Submission Form for Player #{ props.index }</h3>
-
-      < form className = "PlayerSubmissionForm__form"
+  if (!props.isSubmitted) {
+    return (
+      <div className="PlayerSubmissionForm">
+        <h3>Player Submission Form for Player #{ props.index }</h3>
+        < form className = "PlayerSubmissionForm__form"
         onSubmit = {onFormSubmit} >
         
         <div className="PlayerSubmissionForm__poem-inputs">
@@ -56,11 +56,15 @@ const PlayerSubmissionForm = (props) => {
       </form>
     </div>
   );
+} else {
+  return null
+}
 }
 
 PlayerSubmissionForm.propTypes = {
   index: PropTypes.number.isRequired,
   sendSubmission: PropTypes.func.isRequired,
+  isSubmitted: PropTypes.bool.isRequired,
   fields: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.shape({
