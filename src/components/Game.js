@@ -27,7 +27,7 @@ const Game = () => {
 
  
   
-  const stringFormat = FIELDS.map((field) => {
+  const stringFormat = (fields) => FIELDS.map((field) => {
     if (field.key) {
       return (field.userInput ?  field.userInput : field.placeholder);
     } else {

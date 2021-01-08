@@ -6,6 +6,23 @@ import './PlayerSubmissionForm.css';
 const PlayerSubmissionForm = (props) => {
   
   const [formFields, setFormFields] = useState(props.fields)
+  
+  const onFormFieldChange = (i, event) => {
+    const newFormFields = {
+      ...formFields
+    };
+    newFormFields[i] = {
+      ...newFormFields[i],
+      userInput: event.target.value
+    };
+    setFormFields(newFormFields);
+  };
+
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    props.sendSubmission(formFields);
+    setFormFields(props.fields)
+  }
   const poemInputs = formFields.map((field, i) => {
       if (field.key) {
         return (
@@ -13,19 +30,22 @@ const PlayerSubmissionForm = (props) => {
           key={field.key}
           name={field.key}
           placeholder={field.placeholder}
-          type="text" 
+          type="text"
+          value={field.userInput}
+          onChange={(event) => {onFormFieldChange(i,event)}}
           />
         )} else {
-        return field
+        return (field)
       }
   });
   
   return (
     <div className="PlayerSubmissionForm">
-      <h3>Player Submission Form for Player #{  }</h3>
+      <h3>Player Submission Form for Player #{ props.index }</h3>
 
-      <form className="PlayerSubmissionForm__form" >
-
+      < form className = "PlayerSubmissionForm__form"
+        onSubmit = {onFormSubmit} >
+        
         <div className="PlayerSubmissionForm__poem-inputs">
           {poemInputs}
         </div>
