@@ -25,8 +25,8 @@ const Game = () => {
     setPlayerNumber(newPlayer);
   }
   
-  const stringFormat = (fields) => FIELDS.map((field) => {
-    if (field.key && field.userInput) {
+  const stringFormat = (fields) => fields.map((field) => {
+    if (field.userInput) {
       return field.userInput;
     } else if (field.key) {
       return field.placeholder;
